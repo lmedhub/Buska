@@ -1,94 +1,38 @@
 import React from "react";
-import { sites } from "./checkBoxes/CheckBoxes";
-
+import { CheckDatas } from "./CheckDatas";
+import { CheckSites } from "./CheckSites";
 
 export default function FormBusca() {
+  const [site, setSite] = React.useState("");
+  const [data, setData] = React.useState("");
 
-    const [redditIsChecked, setReddIsChecked] = React.useState(false)
-    const [stackIsChecked, setStackIsChecked] = React.useState(false)
-    const [YoutIsChecked, setYoutIsChecked] = React.useState(false)
-    const [site, setSite] = React.useState("")
+  const [userValue, setUserValue] = React.useState();
 
-    const [userValue, setUserValue] = React.useState()
+  function getInputValue(event) {
+    setUserValue(event.target.value);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    window.open("http://google.com/" + "search?q=" + userValue + site + data);
+  }
 
-    function handleChangeR() {
-        setReddIsChecked(!redditIsChecked)
-        setSite("+site%3Areddit.com/")
-    }
-    function handleChangeS() {
-        setStackIsChecked(!stackIsChecked)
-        setSite("+site%3Astackoverflow.com/")
-    }
-    function handleChangeY() {
-        setYoutIsChecked(!YoutIsChecked)
-        setSite("+site%3Ayoutube.com/")
-    }
-    
-    function getInputValue(event) {
-        setUserValue(event.target.value)
-    }
-    function handleSubmit(event) {
-        event.preventDefault()
-        window.open("http://google.com/" + "search?q=" + userValue + site)
-      }
+  return (
+    <div className="formSites">
+      <form onSubmit={handleSubmit}>
+        <CheckSites setSite={setSite}></CheckSites>
+        <CheckDatas setData={setData}></CheckDatas>
 
-    
-    return (
-        <div className="Form">
-            <form onSubmit={handleSubmit}>
-                <div className="checkSites">    
-                    <p>Sites para pesquisar</p>
-                    <label>
-                        <input defaultChecked
-                        type="radio"
-                        name="site"
-                        id="radio1"
-                        onChange={() => setSite("")}
-                        ></input>
-                        Qualquer
-                    </label>
-                    <label>
-                        <input 
-                        type="radio"
-                        name="site"
-                        id="radio2"
-                        onChange={handleChangeR}
-                        ></input>
-                        Reddit
-                    </label>
-                    <label>
-                        <input 
-                        type="radio"
-                        name="site"
-                        id="radio3"
-                        onChange={handleChangeS}
-                        ></input>
-                        StackOverFlow
-                    </label>
-                    <label>
-                        <input 
-                        type="radio"
-                        name="site"
-                        onChange={handleChangeY}
-                        ></input>
-                        Youtube
-                    </label>
-                </div>
-                <p>Período de tempo</p>
-                
-                <div className="caixaPesquisa">
-                    <input autoFocus
-                        type="text"
-                        name="caixa"
-                        onChange={getInputValue}
-                    ></input>
-                    <input
-                        type="submit"
-                        name="pesquisar"
-                        value="Pesquisar!"
-                    ></input>
-                </div>
-            </form>
+        <div className="caixaPesquisa">
+          <input
+            autoFocus
+            type="text"
+            name="caixa"
+            size="25"
+            onChange={getInputValue}
+          />
+          <input type="submit" name="pesquisar" value="Pesquisar!"/>
         </div>
-    )
+      </form>
+    </div>
+  );
 }
