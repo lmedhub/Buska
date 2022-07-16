@@ -5,7 +5,7 @@ export default function Titulo() {
         
         <div className="logoo">
                 <h1>BUSK</h1>
-                <p>Melhore as suas pesquisas do Google de forma prática</p>
+                <p>Pesquise no Google de forma mais prática</p>
         </div>
     )
 }

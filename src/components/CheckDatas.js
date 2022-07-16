@@ -20,6 +20,7 @@ export function CheckDatas(props) {
     return (
         <div>
             <p>Data</p>
+            
             <label>
                 <input
                     defaultChecked
